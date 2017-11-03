@@ -20,7 +20,8 @@ public class Player21 {
 
 	public boolean play(Card aCard, int cardValue) {
 		if (human == true) {
-			if (JOptionPane.showConfirmDialog(null, "Would you like me to HIT you?") == HITME) {
+			if (JOptionPane.showConfirmDialog(null, "Your hand is : " + this.playerHand.toString()
+					+ System.lineSeparator() + "Would you like me to HIT you?") == HITME) {
 				this.playerHand.addCard(aCard);
 				this.gotAce = isItAce(aCard);
 				this.totalHandValue = this.totalHandValue + cardValue;
@@ -36,7 +37,17 @@ public class Player21 {
 	}
 
 	public boolean computerStrategy(Card aCard, int cardValue) {
-		return true;
+		
+		if ( this.totalHandValue <= 17)
+		{
+			this.playerHand.addCard(aCard);
+			this.gotAce = isItAce(aCard);
+			this.totalHandValue = this.totalHandValue + cardValue;
+			return true;
+			
+		}
+		return false;
+		
 	}
 	
 	private boolean isItAce(Card aCard)
@@ -50,6 +61,11 @@ public class Player21 {
 		} else {
 			return this.totalHandValue;
 		}
+	}
+
+	public String getHand() {
+		// TODO Auto-generated method stub
+		return this.playerHand.toString();
 	}
 
 }
