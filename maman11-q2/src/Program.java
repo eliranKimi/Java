@@ -3,7 +3,7 @@ public class Program {
 
 	public static void main(String[] args) {
 
-		DeckOfCards deck = new DeckOfCards();
+		DeckOfCards deck = new DeckOfCards(true);
 
 		deck.shuffle();
 

@@ -12,7 +12,7 @@ public class Card {
 	}
 
 	public String toString() {
-		return face + " of " + suit + " Value=" ;
+		return face + " of " + suit;
 	}
 
 }

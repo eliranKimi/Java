@@ -8,22 +8,24 @@ public class DeckOfCards {
 	private static final int NUMBER_OF_CARDS = 52;
 	private static final SecureRandom randomNumbers = new SecureRandom();
 
-	public DeckOfCards() {
+	public DeckOfCards(boolean full) {
 		String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
 				"Queen", "King" };
 
 		String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
 
 		this.deck = new ArrayList<Card>();
-		this.currentCard = 0;
 
-		for (int count = 0; count < NUMBER_OF_CARDS; count++) {
-			this.deck.add(new Card(faces[count % 13], suits[count / 13]));
+		if (full == true) {
+
+			this.currentCard = 0;
+
+			for (int count = 0; count < NUMBER_OF_CARDS; count++) {
+				this.deck.add(new Card(faces[count % 13], suits[count / 13]));
+
+			}
 
 		}
-
-		this.shuffle();
-
 	}
 
 	public void shuffle() {
@@ -57,5 +59,4 @@ public class DeckOfCards {
 
 	}
 
-	
 }
