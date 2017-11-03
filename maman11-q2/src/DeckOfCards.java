@@ -58,5 +58,13 @@ public class DeckOfCards {
 		}
 
 	}
+	
+	public String toString()
+	{
+		return this.deck.toString();
+		
+		
+		
+	}
 
 }
