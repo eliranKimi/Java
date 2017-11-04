@@ -4,13 +4,11 @@ public class GameOf21 {
 
 	private DeckOfCards gameDeck;
 
-	
-	
-	//DECK CONSTANTS
+	// DECK CONSTANTS
 	private static final boolean EMPTY = false;
 	private static final boolean FULL = true;
-	
-	//CARDS VALUES CONSTANTS
+
+	// CARDS VALUES CONSTANTS
 	private static final int NONE_VALUE = 0;
 	private static final int ACE_VALUE = 1;
 	private static final int DEUCE_VALUE = 2;
@@ -22,11 +20,11 @@ public class GameOf21 {
 	private static final int EIGHT_VALUE = 8;
 	private static final int NINE_VALUE = 9;
 	private static final int TEN_VALUE = 10;
-	
-	//GAME START CONSTANT
+
+	// GAME START CONSTANT
 	private static final int START = 0;
-	
-	//GAME SUMMARY CONSTANTS
+
+	// GAME SUMMARY CONSTANTS
 	private static final int BOTH_WON = 3;
 	private static final int PLAYER1_WON = 1;
 	private static final int PLAYER2_WON = 2;
@@ -51,19 +49,15 @@ public class GameOf21 {
 			while (player1InGame == true || player2InGame == true) {
 				Card dealtCard = this.gameDeck.dealCard();
 
-				if (player1InGame == true) 
-				{
+				if (player1InGame == true) {
 					player1InGame = player1.play(dealtCard, this.getCardValue(dealtCard));
 
 					if (player1InGame == true)
 						dealtCard = this.gameDeck.dealCard();
 				}
-					player2InGame = player2.play(dealtCard, this.getCardValue(dealtCard));
-
-				
+				player2InGame = player2.play(dealtCard, this.getCardValue(dealtCard));
 
 			}
-			
 
 			this.gameResult(player1, player2);
 

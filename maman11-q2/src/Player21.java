@@ -37,21 +37,19 @@ public class Player21 {
 	}
 
 	public boolean computerStrategy(Card aCard, int cardValue) {
-		
-		if ( this.totalHandValue <= 17)
-		{
+
+		if (this.totalHandValue <= 17) {
 			this.playerHand.addCard(aCard);
 			this.gotAce = isItAce(aCard);
 			this.totalHandValue = this.totalHandValue + cardValue;
 			return true;
-			
+
 		}
 		return false;
-		
+
 	}
-	
-	private boolean isItAce(Card aCard)
-	{
+
+	private boolean isItAce(Card aCard) {
 		return (aCard.getFace().equals("Ace"));
 	}
 

@@ -58,13 +58,10 @@ public class DeckOfCards {
 		}
 
 	}
-	
-	public String toString()
-	{
+
+	public String toString() {
 		return this.deck.toString();
-		
-		
-		
+
 	}
 
 }
