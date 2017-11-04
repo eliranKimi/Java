@@ -1,12 +1,14 @@
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
+//THE BASE OF THE CLASS IS COPIED FROM SECTION 7.6 FROM THE BOOK
 public class DeckOfCards {
 
 	private ArrayList<Card> deck;
 	private int currentCard;
 	private static final int NUMBER_OF_CARDS = 52;
 	private static final SecureRandom randomNumbers = new SecureRandom();
+	private static final int NUMBER_OF_FACES = 13;
 
 	public DeckOfCards(boolean full) {
 		String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
@@ -21,7 +23,7 @@ public class DeckOfCards {
 			this.currentCard = 0;
 
 			for (int count = 0; count < NUMBER_OF_CARDS; count++) {
-				this.deck.add(new Card(faces[count % 13], suits[count / 13]));
+				this.deck.add(new Card(faces[count % NUMBER_OF_FACES], suits[count / NUMBER_OF_FACES]));
 
 			}
 
@@ -59,6 +61,7 @@ public class DeckOfCards {
 
 	}
 
+	@Override
 	public String toString() {
 		return this.deck.toString();
 

@@ -52,10 +52,14 @@ public class GameOf21 {
 				if (player1InGame == true) {
 					player1InGame = player1.play(dealtCard, this.getCardValue(dealtCard));
 
-					if (player1InGame == true)
+					if (player1InGame == true) {
 						dealtCard = this.gameDeck.dealCard();
+					}
 				}
-				player2InGame = player2.play(dealtCard, this.getCardValue(dealtCard));
+
+				if (player2InGame == true) {
+					player2InGame = player2.play(dealtCard, this.getCardValue(dealtCard));
+				}
 
 			}
 
@@ -70,17 +74,17 @@ public class GameOf21 {
 		int player2Hand = player2.getTotalHand();
 
 		if (player2Hand == 21 && player1Hand == 21)
-			this.winner(BOTH_WON, player1.getHand(), player2.getHand());
+			this.finalMsgBox(BOTH_WON, player1.getHand(), player2.getHand());
 		else if (player2Hand > 21 && player1Hand > 21)
-			this.winner(NONE_WON, player1.getHand(), player2.getHand());
+			this.finalMsgBox(NONE_WON, player1.getHand(), player2.getHand());
 		else if (player1Hand == 21 || (player2Hand > 21 && player1Hand < 21) || player1Hand > player2Hand)
-			this.winner(PLAYER1_WON, player1.getHand(), player2.getHand());
+			this.finalMsgBox(PLAYER1_WON, player1.getHand(), player2.getHand());
 		else if (player2Hand == 21 || (player1Hand > 21 && player2Hand < 21) || player2Hand > player1Hand)
-			this.winner(PLAYER2_WON, player1.getHand(), player2.getHand());
+			this.finalMsgBox(PLAYER2_WON, player1.getHand(), player2.getHand());
 
 	}
 
-	public void winner(int whoWon, String player1Deck, String player2Deck) {
+	public void finalMsgBox(int whoWon, String player1Deck, String player2Deck) {
 
 		if (whoWon == NONE_WON)
 			JOptionPane.showMessageDialog(null, "No One won! " + System.lineSeparator() + "Player1 Hand was :"

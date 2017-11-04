@@ -1,4 +1,4 @@
-
+//CLASS COPIED FROM SECTION 7.6 FROM THE BOOK
 public class Card {
 
 	private final String face;
