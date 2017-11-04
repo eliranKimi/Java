@@ -5,12 +5,16 @@ public class Player21 {
 	// DECK CONSTANTS
 	private static final boolean EMPTY = false;
 	private static final boolean FULL = true;
+
 	// PLAY CONSTANT
 	private static final int HITME = 0;
+
 	// ADDITION TO ACE IN CASE ITS NEEDED CONSTAT
 	private static final int ACE_ADDITION = 10;
+
 	// WIN VALUE GOAL CONSANT
 	private static final int WIN_SUM = 21;
+
 	// COMPUTER STARTEGY CONSANT
 	private static final int COMPUTER_SUM_LIMIT_STRAT = 17;
 
@@ -30,7 +34,7 @@ public class Player21 {
 	public boolean play(Card aCard, int cardValue) {
 		if (human == true) {
 			if (JOptionPane.showConfirmDialog(null, "Your hand is : " + this.playerHand.toString()
-			+ System.lineSeparator() + "Would you like me to HIT you?") == HITME) {
+					+ System.lineSeparator() + "Would you like me to HIT you?") == HITME) {
 				this.playerHand.addCard(aCard);
 				this.gotAce = isItAce(aCard);
 				this.totalHandValue = this.totalHandValue + cardValue;
@@ -40,9 +44,7 @@ public class Player21 {
 		} else {
 			return this.computerStrategy(aCard, cardValue);
 		}
-
 		return false;
-
 	}
 
 	public boolean computerStrategy(Card aCard, int cardValue) {
@@ -52,10 +54,8 @@ public class Player21 {
 			this.gotAce = isItAce(aCard);
 			this.totalHandValue = this.totalHandValue + cardValue;
 			return true;
-
 		}
 		return false;
-
 	}
 
 	private boolean isItAce(Card aCard) {

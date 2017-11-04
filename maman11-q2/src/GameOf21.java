@@ -2,8 +2,6 @@ import javax.swing.JOptionPane;
 
 public class GameOf21 {
 
-	private DeckOfCards gameDeck;
-
 	// DECK CONSTANTS
 	private static final boolean EMPTY = false;
 	private static final boolean FULL = true;
@@ -29,6 +27,8 @@ public class GameOf21 {
 	private static final int PLAYER1_WON = 1;
 	private static final int PLAYER2_WON = 2;
 	private static final int NONE_WON = 4;
+
+	private DeckOfCards gameDeck;
 
 	public GameOf21() {
 		this.startGame();
@@ -56,17 +56,12 @@ public class GameOf21 {
 						dealtCard = this.gameDeck.dealCard();
 					}
 				}
-
 				if (player2InGame == true) {
 					player2InGame = player2.play(dealtCard, this.getCardValue(dealtCard));
 				}
-
 			}
-
 			this.gameResult(player1, player2);
-
 		}
-
 	}
 
 	public void gameResult(Player21 player1, Player21 player2) {
@@ -85,24 +80,18 @@ public class GameOf21 {
 	}
 
 	public void finalMsgBox(int whoWon, String player1Deck, String player2Deck) {
-
 		if (whoWon == NONE_WON)
 			JOptionPane.showMessageDialog(null, "No One won! " + System.lineSeparator() + "Player1 Hand was :"
 					+ player1Deck + System.lineSeparator() + "Player2 Hand was: " + player2Deck);
 		else if (whoWon == BOTH_WON)
 			JOptionPane.showMessageDialog(null, "Both players won! " + System.lineSeparator() + "Player1 Hand was :"
 					+ player1Deck + System.lineSeparator() + "Player2 Hand was: " + player2Deck);
-		else
-
-		if (whoWon == PLAYER1_WON)
+		else if (whoWon == PLAYER1_WON)
 			JOptionPane.showMessageDialog(null, "Player1 won! " + System.lineSeparator() + "Player1 Hand was :"
 					+ player1Deck + System.lineSeparator() + "Player2 Hand was: " + player2Deck);
-		else
-
-		if (whoWon == PLAYER2_WON)
+		else if (whoWon == PLAYER2_WON)
 			JOptionPane.showMessageDialog(null, "Player2 won! " + System.lineSeparator() + "Player1 Hand was :"
 					+ player1Deck + System.lineSeparator() + "Player2 Hand was: " + player2Deck);
-
 	}
 
 	// This method is placed inside GameOf21 class and not Card class , since the
@@ -110,11 +99,8 @@ public class GameOf21 {
 	// the card is relevant for the rules of this specific game - and are not
 	// universal for every card game.
 	public int getCardValue(Card aCard) {
-
 		if (aCard != null) {
-
 			String cardFace = aCard.getFace();
-
 			if (cardFace.equals("Ace")) {
 				return ACE_VALUE;
 			}
@@ -146,7 +132,6 @@ public class GameOf21 {
 					|| cardFace.equals("King")) {
 				return TEN_VALUE;
 			}
-
 		}
 		return NONE_VALUE;
 	}
