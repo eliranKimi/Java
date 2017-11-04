@@ -4,17 +4,17 @@ public class Rational {
 	private int deno; // Denominator
 	private int num; // Numerator
 
+	// CONSTRUCTER WILL GENERATE 0 IN CASE AN ILGEAL RATIONAL NUMBER IS PASSED (AS
+	// ASKED)
 	public Rational(int num, int den) {
 		super();
-		if (den > 0 || num >= 0) {
+		if (den > 0) {
 			this.deno = den;
 			this.num = num;
 		} else {
 			this.deno = 0;
 			this.num = 0;
-
 		}
-
 	}
 
 	public int getDenominator() {
@@ -49,39 +49,33 @@ public class Rational {
 					* ((Rational) number).getNumerator()) {
 				return true;
 			}
-
 			return false;
-
 		} else {
+			System.out.println("ERR: Object is not a Rational number! ");
 			return false;
 		}
-
 	}
 
 	public Rational plus(Rational number) {
-		Rational sum;
+		Rational sumResult;
 		int den;
 		int num;
 
 		den = this.getDenominator() + number.getDenominator();
 		num = this.getNumerator() * number.getDenominator() + this.getDenominator() * number.getNumerator();
-
-		sum = new Rational(den, num);
-
-		return sum;
+		sumResult = new Rational(den, num);
+		return sumResult;
 	}
 
 	public Rational minus(Rational number) {
-		Rational sum;
+		Rational sumResult;
 		int den;
 		int num;
 
 		den = this.getDenominator() + number.getDenominator();
 		num = this.getNumerator() * number.getDenominator() - this.getDenominator() * number.getNumerator();
-
-		sum = new Rational(den, num);
-
-		return sum;
+		sumResult = new Rational(den, num);
+		return sumResult;
 	}
 
 	public Rational multiply(Rational number) {
@@ -95,25 +89,22 @@ public class Rational {
 	@Override
 	public String toString() {
 		return this.getNumerator() + "/" + this.getDenominator();
-
 	}
 
+	// USED THE ECULIDUS ALGORITHEM AS DESCRIBED AT THE QUESTION
 	private int gcd(int x, int y) {
 		if (y != 0) {
 			return this.gcd(y, x % y);
 		} else {
 			return x;
 		}
-
 	}
 
 	public Rational reduce() {
 		Rational number;
 		int divider = this.gcd(this.getDenominator(), this.getNumerator());
 		number = new Rational(this.getDenominator() / divider, this.getNumerator() / divider);
-
 		return number;
-
 	}
 
 	public Boolean isZeroed() {

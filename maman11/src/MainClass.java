@@ -1,14 +1,8 @@
 
-
 public class MainClass {
 
-	 public static void main(String[] args) 
-	 {
-		 Program prog= new Program();
-		 
-		 System.out.println(prog);
-		 
-	 }
-	
-	
+	public static void main(String[] args) {
+		Program prog = new Program();
+	}
+
 }
