@@ -13,7 +13,7 @@ public class AdditionExpression extends CompoundExpression {
 
 	@Override
 	public String toString() {
-		return firstOperand + "+" + secondOperand + "=" + this.calcualte();
+		return firstOperand + " + " + secondOperand + " = " + this.calcualte();
 	}
 
 }

@@ -8,12 +8,12 @@ public class SubtractionExpression extends CompoundExpression {
 
 	@Override
 	public double calcualte() {
-		return (firstOperand.calcualte() - firstOperand.calcualte());
+		return (firstOperand.calcualte() - secondOperand.calcualte());
 	}
 
 	@Override
 	public String toString() {
-		return firstOperand + "-" + secondOperand + "=" + this.calcualte();
+		return "( "+firstOperand + " - " + secondOperand +" )"+ " = " + this.calcualte();
 	}
 
 }
