@@ -64,5 +64,9 @@ public abstract class MyShape extends JPanel implements Cloneable {
 
 	@Override
 	public abstract boolean equals(Object object);
+	
+	@Override
+	public abstract Object clone();
+
 
 }
