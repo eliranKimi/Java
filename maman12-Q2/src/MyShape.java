@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public abstract class MyShape extends JPanel implements Cloneable {
+public abstract class MyShape implements Cloneable {
 
 	private int x1;
 	private int x2;
@@ -68,12 +68,7 @@ public abstract class MyShape extends JPanel implements Cloneable {
 	@Override
 	public abstract Object clone();
 	
-	@Override
-	public void repaint() {
-		super.repaint();
-		
 
-	}
 
 
 }

@@ -2,8 +2,10 @@
 public class MainClass {
 
 	public static void main(String[] args) {
-		
-		Program aProgram = new Program();
+		MyJFrame frame = new MyJFrame();
+		ShapesPanel aProgram = new ShapesPanel();
+		frame.add(aProgram);
+		frame.setVisible(true);
 		
 	}
 

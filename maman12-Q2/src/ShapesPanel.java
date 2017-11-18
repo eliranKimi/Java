@@ -1,8 +1,11 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
-public class Program {
+import javax.swing.JPanel;
+
+public class ShapesPanel extends JPanel {
 
 	private static final SecureRandom randomNumbers = new SecureRandom();
 	private static final int RANGE_OF_NUMBERS = 200;
@@ -12,17 +15,20 @@ public class Program {
 
 	private ArrayList<MyShape> shapes;
 
-	public Program() {
+	public ShapesPanel() {
+		
+
 
 		this.shapes = new ArrayList<MyShape>();
 		this.copiedShapes = new ArrayList<MyShape>();
-		MyJFrame frame = new MyJFrame();
+		
 
+		
 		this.generateShapes(this.shapes);
-		this.addToFrame(this.shapes, frame);
+		//this.addToFrame(this.shapes, frame);
 		this.copyShapes(this.shapes, this.copiedShapes);
 		this.makeChangesToShapes(this.copiedShapes);
-		this.addToFrame(this.copiedShapes, frame);
+//		this.addToFrame(this.copiedShapes, frame);
 
 	}
 
@@ -60,14 +66,25 @@ public class Program {
 		anArray.add(rect2);
 	}
 
-	private void addToFrame(ArrayList<MyShape> anArray, MyJFrame frame) {
+//	private void addToFrame(ArrayList<MyShape> anArray, MyJFrame frame) {
+//
+//		for (int i = 0; i < anArray.size(); i++) {
+//			frame.add(anArray.get(i));
+//			frame.setVisible(true);
+//		}
+//
+//	}
+	
+	private void paintArray(ArrayList<MyShape> anArray,Graphics g) {
 
 		for (int i = 0; i < anArray.size(); i++) {
-			frame.add(anArray.get(i));
-			frame.setVisible(true);
+//			frame.add(anArray.get(i));
+//			frame.setVisible(true);
+			anArray.get(i).paint(g);
 		}
 
 	}
+	
 
 	private void makeChangesToShapes(ArrayList<MyShape> anArray) {
 		
@@ -87,5 +104,14 @@ public class Program {
 			}
 
 		}
+	}
+	
+	@Override
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		this.paintArray(shapes,g);
+		this.paintArray(copiedShapes,g);
+		
 	}
 }
