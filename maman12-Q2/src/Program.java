@@ -38,7 +38,7 @@ public class Program {
 
 	private void generateShapes(ArrayList<MyShape> anArray) {
 		MyOval oval1 = new MyOval(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS),
-				randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.RED, NOT_FULL);
+				randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.RED, FULL);
 		MyOval oval2 = new MyOval(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS),
 				randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.RED, NOT_FULL);
 		MyLine line1 = new MyLine(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS),
