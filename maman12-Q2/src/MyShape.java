@@ -67,8 +67,4 @@ public abstract class MyShape implements Cloneable {
 	
 	@Override
 	public abstract Object clone();
-	
-
-
-
 }
