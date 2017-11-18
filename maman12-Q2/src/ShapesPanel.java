@@ -19,7 +19,7 @@ public class ShapesPanel extends JPanel {
 	public ShapesPanel() {
 		this.shapes = new ArrayList<MyShape>();
 		this.copiedShapes = new ArrayList<MyShape>();
-
+		
 		this.generateShapes(this.shapes);
 		this.copyShapes(this.shapes, this.copiedShapes);
 		this.makeChangesToShapes(this.copiedShapes);
