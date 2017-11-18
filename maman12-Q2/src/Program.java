@@ -74,8 +74,10 @@ public class Program {
 		//Lower down and right
 		for (int i = 0; i < anArray.size(); i++) {
 			MyShape temp = anArray.get(i);
+			
+			// X1&X2 are the coordinates of the top left corner of the shape (And not x1,y1 as described on the exercise)
 			temp.setX1(temp.getX1() + NUMBER_TO_LOWER);
-			temp.setY1(temp.getY1() + NUMBER_TO_LOWER);
+			temp.setX2(temp.getX2() + NUMBER_TO_LOWER);
 		
 			//Change to opposite of full status
 			if (temp instanceof MyBoundedShape) {
