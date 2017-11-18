@@ -9,7 +9,7 @@ public abstract class MyShape implements Cloneable {
 	private int x2;
 	private int y1;
 	private int y2;
-	Color color;
+	private Color color;
 
 	protected MyShape(int x1, int x2, int y1, int y2, Color color) {
 		super();
@@ -64,7 +64,7 @@ public abstract class MyShape implements Cloneable {
 
 	@Override
 	public abstract boolean equals(Object object);
-	
+
 	@Override
 	public abstract Object clone();
 }

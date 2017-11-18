@@ -2,9 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
 
 //Contains most of the logic of the main program.
 public class ShapesPanel extends JPanel {
@@ -19,7 +17,6 @@ public class ShapesPanel extends JPanel {
 	private ArrayList<MyShape> copiedShapes;
 
 	public ShapesPanel() {
-
 		this.shapes = new ArrayList<MyShape>();
 		this.copiedShapes = new ArrayList<MyShape>();
 
@@ -57,9 +54,8 @@ public class ShapesPanel extends JPanel {
 		anArray.add(line1);
 		anArray.add(line2);
 		anArray.add(rect1);
-		anArray.add(rect2);	
+		anArray.add(rect2);
 	}
-
 
 	private void paintArray(ArrayList<MyShape> anArray, Graphics g) {
 		for (int i = 0; i < anArray.size(); i++) {
@@ -77,7 +73,7 @@ public class ShapesPanel extends JPanel {
 			temp.setX1(temp.getX1() + NUMBER_TO_LOWER);
 			temp.setX2(temp.getX2() + NUMBER_TO_LOWER);
 
-			// Change to opposite of full status
+			// Change to opposite of fill status
 			if (temp instanceof MyBoundedShape) {
 				MyBoundedShape x = (MyBoundedShape) temp;
 				x.setFull(!x.getIsFull());

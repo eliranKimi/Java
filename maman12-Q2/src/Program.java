@@ -1,4 +1,4 @@
-
+//This class exists for the soul purpose of hiding any logic from the main function
 public class Program {
 	
 	public Program()
