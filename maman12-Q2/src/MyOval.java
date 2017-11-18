@@ -36,4 +36,12 @@ public class MyOval extends MyBoundedShape {
 		return anOval;
 
 	}
+	
+	@Override
+	public void repaint() {
+		super.repaint();
+		
+
+	}
+
 }

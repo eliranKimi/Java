@@ -37,5 +37,13 @@ public class MyRectangle extends MyBoundedShape {
 		return aRect;
 
 	}
+	
+	@Override
+	public void repaint() {
+		super.repaint();
+		
+
+	}
+
 
 }

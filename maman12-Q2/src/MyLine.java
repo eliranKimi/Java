@@ -39,5 +39,11 @@ public class MyLine extends MyShape {
 		return aLine;
 
 	}
+	@Override
+	public void repaint() {
+		super.repaint();
+		
+
+	}
 
 }
