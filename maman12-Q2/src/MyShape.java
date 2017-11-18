@@ -67,6 +67,13 @@ public abstract class MyShape extends JPanel implements Cloneable {
 	
 	@Override
 	public abstract Object clone();
+	
+	@Override
+	public void repaint() {
+		super.repaint();
+		
+
+	}
 
 
 }
