@@ -6,6 +6,9 @@ public class Program {
 
 	private static final SecureRandom randomNumbers = new SecureRandom();
 	private static final int RANGE_OF_NUMBERS = 200;
+	private static final int NUMBER_TO_LOWER = 10;
+	private static final boolean FULL = true;
+	private static final boolean NOT_FULL = false;
 
 	private ArrayList<MyShape> shapes;
 
@@ -15,46 +18,46 @@ public class Program {
 		this.copiedShapes = new ArrayList<MyShape>();
 		MyJFrame frame = new MyJFrame();
 
-		this.generateShapes();
-		this.addToFrame(shapes, frame);
-		this.copyShapes();
-		this.lowerShapesDownRight(this.copiedShapes);
-		this.addToFrame(copiedShapes, frame);
+		this.generateShapes(this.shapes);
+		this.addToFrame(this.shapes, frame);
+		this.copyShapes(this.shapes, this.copiedShapes);
+		this.makeChangesToShapes(this.copiedShapes);
+		this.addToFrame(this.copiedShapes, frame);
 
 	}
 
 	private ArrayList<MyShape> copiedShapes;
 
-	private void copyShapes() {
-		if (this.shapes != null) {
-			for (int i = 0; i < shapes.size(); i++) {
-				this.copiedShapes.add((MyShape) shapes.get(i).clone());
+	private void copyShapes(ArrayList<MyShape> sourceArray, ArrayList<MyShape> copyArray) {
+		if (sourceArray != null && copyArray != null) {
+			for (int i = 0; i < sourceArray.size(); i++) {
+				copyArray.add((MyShape) sourceArray.get(i).clone());
 			}
 		}
 	}
 
-	private void generateShapes() {
-		MyOval oval1 = new MyOval(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), 100,
-				randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.RED, true);
-		MyOval oval2 = new MyOval(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), 100,
-				randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.RED, false);
-		MyLine line1 = new MyLine(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), 100,
-				randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.BLACK);
-		MyLine line2 = new MyLine(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), 100,
-				randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.BLACK);
+	private void generateShapes(ArrayList<MyShape> anArray) {
+		MyOval oval1 = new MyOval(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS),
+				randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.RED, NOT_FULL);
+		MyOval oval2 = new MyOval(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS),
+				randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.RED, NOT_FULL);
+		MyLine line1 = new MyLine(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS),
+				randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.MAGENTA);
+		MyLine line2 = new MyLine(randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS),
+				randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.MAGENTA);
 		MyRectangle rect1 = new MyRectangle(randomNumbers.nextInt(RANGE_OF_NUMBERS),
-				randomNumbers.nextInt(RANGE_OF_NUMBERS), 100, randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.BLUE,
-				true);
+				randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS),
+				randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.BLUE, NOT_FULL);
 		MyRectangle rect2 = new MyRectangle(randomNumbers.nextInt(RANGE_OF_NUMBERS),
-				randomNumbers.nextInt(RANGE_OF_NUMBERS), 100, randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.BLUE,
-				false);
+				randomNumbers.nextInt(RANGE_OF_NUMBERS), randomNumbers.nextInt(RANGE_OF_NUMBERS),
+				randomNumbers.nextInt(RANGE_OF_NUMBERS), Color.BLUE, NOT_FULL);
 
-		this.shapes.add(oval1);
-		this.shapes.add(oval2);
-		this.shapes.add(line1);
-		this.shapes.add(line2);
-		this.shapes.add(rect1);
-		this.shapes.add(rect2);
+		anArray.add(oval1);
+		anArray.add(oval2);
+		anArray.add(line1);
+		anArray.add(line2);
+		anArray.add(rect1);
+		anArray.add(rect2);
 	}
 
 	private void addToFrame(ArrayList<MyShape> anArray, MyJFrame frame) {
@@ -66,11 +69,20 @@ public class Program {
 
 	}
 
-	private void lowerShapesDownRight(ArrayList<MyShape> anArray) {
+	private void makeChangesToShapes(ArrayList<MyShape> anArray) {
+		
+		//Lower down and right
 		for (int i = 0; i < anArray.size(); i++) {
 			MyShape temp = anArray.get(i);
-			temp.setX1(temp.getX1() + 10);
-			temp.setY1(temp.getY1() + 10);
+			temp.setX1(temp.getX1() + NUMBER_TO_LOWER);
+			temp.setY1(temp.getY1() + NUMBER_TO_LOWER);
+		
+			//Change to opposite of full status
+			if (temp instanceof MyBoundedShape) {
+				MyBoundedShape x = (MyBoundedShape) temp;
+				x.setFull(!x.getIsFull());
+
+			}
 
 		}
 	}

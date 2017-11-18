@@ -17,6 +17,7 @@ public class MyLine extends MyShape {
 
 	}
 
+	// To calculate line's distance, this function is using the distance between 2 points formula 
 	public double distance() {
 		return Math.sqrt(Math.pow(this.getX1() - this.getX2(), POW_FOR_DISTANCE)
 				+ Math.pow(this.getY1() - this.getY2(), POW_FOR_DISTANCE));
@@ -37,12 +38,6 @@ public class MyLine extends MyShape {
 	public Object clone() {
 		MyLine aLine = new MyLine(this.getX1(), this.getX2(), this.getY1(), this.getY2(), this.getColor());
 		return aLine;
-
-	}
-	@Override
-	public void repaint() {
-		super.repaint();
-		
 
 	}
 
