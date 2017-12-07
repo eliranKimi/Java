@@ -1,0 +1,57 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+
+
+public class TestModel {
+
+	
+	public static final int NUMBER_OF_ANSWERS=4;
+	private LinkedList<TestQuestion> arrayOfQuestions;
+
+	public TestModel() {
+
+		arrayOfQuestions = this.readFile();
+
+	}
+
+	public LinkedList<TestQuestion> readFile() {
+		LinkedList<TestQuestion> aList = new LinkedList<TestQuestion>();
+		LinkedList<String> inputList = new LinkedList<String>();
+
+		try {
+			Scanner input = new Scanner(new File("exam.txt"));
+
+			while (input.hasNext()) {
+				String st = input.next();
+				inputList.add(st);
+			}
+		} catch (FileNotFoundException ex) {
+			System.out.println("GOddamn");
+
+		}
+
+		while (!inputList.isEmpty()) {
+			int i = 0;
+			String answers[] = new String[NUMBER_OF_ANSWERS];
+
+			TestQuestion aQuestion = new TestQuestion(inputList.getFirst());
+
+			while (i < NUMBER_OF_ANSWERS & !inputList.isEmpty()) {
+				answers[i] = inputList.getFirst();
+
+			}
+
+			aList.add(aQuestion);
+
+		}
+		
+		return aList;
+
+	}
+
+	
+	
+}
