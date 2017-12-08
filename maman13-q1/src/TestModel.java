@@ -1,14 +1,15 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-
-
 public class TestModel {
 
-	
-	public static final int NUMBER_OF_ANSWERS=4;
+	// RANDOM NUMBERS GENERATOR CONSTANT
+	private static final SecureRandom randomNumbers = new SecureRandom();
+
+	public static final int NUMBER_OF_ANSWERS = 4;
 	private LinkedList<TestQuestion> arrayOfQuestions;
 
 	public TestModel() {
@@ -28,6 +29,8 @@ public class TestModel {
 				String st = input.next();
 				inputList.add(st);
 			}
+			
+			input.close();
 		} catch (FileNotFoundException ex) {
 			System.out.println("GOddamn");
 
@@ -47,11 +50,34 @@ public class TestModel {
 			aList.add(aQuestion);
 
 		}
-		
+
 		return aList;
 
 	}
 
-	
+	public String[] getRandomAnswers(TestQuestion q) {
+		String[] originalAnswers = q.getQ_answers();
+		String[] randomAnswers = new String[originalAnswers.length];
+
+		for (int i = originalAnswers.length - 1; i < 0; i--) {
+			randomAnswers[i] = originalAnswers[randomNumbers.nextInt(i + 1)];
+
+		}
+
+		return randomAnswers;
+
+	}
+
+	public TestQuestion getQuestion()
+	{
+		TestQuestion aQuestion = arrayOfQuestions.getFirst();
+		
+		aQuestion.setQ_answers(this.getRandomAnswers(aQuestion));
+		
+		
+		return  aQuestion;
+		
+		
+	}
 	
 }
