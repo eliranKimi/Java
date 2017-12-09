@@ -11,6 +11,14 @@ public class TestModel {
 
 	public static final int NUMBER_OF_ANSWERS = 4;
 	private LinkedList<TestQuestion> arrayOfQuestions;
+	public LinkedList<TestQuestion> getArrayOfQuestions() {
+		return arrayOfQuestions;
+	}
+
+	public void setArrayOfQuestions(LinkedList<TestQuestion> arrayOfQuestions) {
+		this.arrayOfQuestions = arrayOfQuestions;
+	}
+
 	private int currentQuestion;
 	
 
@@ -43,8 +51,9 @@ public class TestModel {
 		while (!inputList.isEmpty()) {
 			int i = 0;
 			String answers[] = new String[NUMBER_OF_ANSWERS];
+			String aQuestionContent = inputList.getFirst();
 
-			TestQuestion aQuestion = new TestQuestion(inputList.getFirst());
+//			TestQuestion aQuestion = new TestQuestion(inputList.getFirst(),null);
 			inputList.removeFirst();
 
 			while (i < NUMBER_OF_ANSWERS & !inputList.isEmpty()) {
@@ -53,8 +62,9 @@ public class TestModel {
 				i++;
 
 			}
-			aQuestion.setQ_answers(answers);
-			aQuestion.setTheAnswer(answers[0]);
+			TestQuestion aQuestion = new TestQuestion(aQuestionContent,answers);
+//			aQuestion.setQ_answers(answers);
+//			aQuestion.setTheAnswer(answers[0]);
 
 			aList.add(aQuestion);
 
@@ -64,90 +74,87 @@ public class TestModel {
 
 	}
 
-	public String[] getRandomAnswers(TestQuestion q) {
-		String[] originalAnswers = q.getQ_answers();
-		String[] randomAnswers = new String[originalAnswers.length];
-		System.arraycopy(originalAnswers, 0, randomAnswers, 0, originalAnswers.length);
+//	public String[] getRandomAnswers(TestQuestion q) {
+//		String[] originalAnswers = q.getQ_answers();
+//		String[] randomAnswers = new String[originalAnswers.length];
+//		System.arraycopy(originalAnswers, 0, randomAnswers, 0, originalAnswers.length);
+//
+//		for (int i = originalAnswers.length - 1; i > 0; i--) {
+//			swap(randomAnswers, i, randomNumbers.nextInt(i + 1));
+//
+//			// randomAnswers[i] = originalAnswers[randomNumbers.nextInt(i + 1)];
+//
+//		}
+//
+//		return randomAnswers;
+//
+//	}
+//	
+//
+//
+//	public <T> void swap(T[] arr, int i, int j) {
+//		T tmp = arr[i];
+//		arr[i] = arr[j];
+//		arr[j] = tmp;
+//	}
 
-		for (int i = originalAnswers.length - 1; i > 0; i--) {
-			swap(randomAnswers, i, randomNumbers.nextInt(i + 1));
+//	public TestQuestion getNextQuestion() {
+//
+//		if (currentQuestion < arrayOfQuestions.size()-1)
+//		{
+//			currentQuestion++;
+//		TestQuestion aQuestion = this.getCurrentQuestion();
+//		aQuestion.setQ_answers(this.getRandomAnswers(aQuestion));
+//
+//		return aQuestion;
+//		}
+//		
+//		return null;
+//
+//	}
 
-			// randomAnswers[i] = originalAnswers[randomNumbers.nextInt(i + 1)];
+//	public void reset() {
+//		currentQuestion = 0;
+//
+//		for (int i = 0; i < arrayOfQuestions.size(); i++) {
+//			arrayOfQuestions.get(i).resetCorrectAnswer();
+//		}
+//
+//	}
 
-		}
+//	public TestQuestion getCurrentQuestion() {
+//		return arrayOfQuestions.get(currentQuestion);
+//	}
 
-		return randomAnswers;
-
-	}
-	
-
-
-	public <T> void swap(T[] arr, int i, int j) {
-		T tmp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = tmp;
-	}
-
-	public TestQuestion getNextQuestion() {
-
-		if (currentQuestion < arrayOfQuestions.size()-1)
-		{
-			currentQuestion++;
-		TestQuestion aQuestion = this.getCurrentQuestion();
-		aQuestion.setQ_answers(this.getRandomAnswers(aQuestion));
-
-		return aQuestion;
-		}
-		
-		return null;
-
-	}
-
-	public void reset() {
-		currentQuestion = 0;
-
-		for (int i = 0; i < arrayOfQuestions.size(); i++) {
-			arrayOfQuestions.get(i).resetCorrectAnswer();
-		}
-
-	}
-
-	public TestQuestion getCurrentQuestion() {
-		
-	
-		
-		return arrayOfQuestions.get(currentQuestion);
-	}
-
-	public float finish() {
-
-		if (currentQuestion == arrayOfQuestions.size()-1) {
-			int count = this.getNumberOfCurrect();
-			int size = arrayOfQuestions.size();
-			float total = ((float)count / (float)size) * 100;
-			
-			return total;
-
-
-		}
-
-		return -1;
-
-		// TODO Auto-generated method stub
-
-	}
-
-	private int getNumberOfCurrect() {
-		int count = 0;
-		for (int i = 0; i < arrayOfQuestions.size(); i++) {
-			if (arrayOfQuestions.get(i).getCorrectAnswer() == true) {
-				count++;
-			}
-
-		}
-
-		return count;
-
-	}
+//	public float finish() {
+//
+//		if (currentQuestion == arrayOfQuestions.size()-1) {
+//			int count = this.getNumberOfCurrect();
+//			int size = arrayOfQuestions.size();
+//			float total = ((float)count / (float)size) * 100;
+//			
+//			return total;
+//
+//
+//		}
+//
+//		return -1;
+//
+//		// TODO Auto-generated method stub
+//
+//	}
+//
+//	private int getNumberOfCurrect() {
+//		int count = 0;
+//		for (int i = 0; i < arrayOfQuestions.size(); i++) {
+//			if (arrayOfQuestions.get(i).getCorrectAnswer() == true) {
+//				count++;
+//			}
+//
+//		}
+//
+//		return count;
+//
+//	}
 
 }
