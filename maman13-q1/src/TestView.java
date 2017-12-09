@@ -35,7 +35,9 @@ public class TestView extends JFrame {
 		answerGroup.add(m_answer2);
 		answerGroup.add(m_answer3);
 		answerGroup.add(m_answer4);
-
+		
+		
+		m_answer2.setBackground(Color.ORANGE);
 		JPanel answersPanel = new JPanel();
 		answersPanel.setLayout(new BoxLayout(answersPanel,BoxLayout.Y_AXIS));
 		answersPanel.add(m_answer1);

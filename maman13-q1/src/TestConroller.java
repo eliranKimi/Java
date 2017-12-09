@@ -60,7 +60,6 @@ public class TestConroller {
 			}
 		}
 	}
- $ISIS537
  
 	class FinishListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
