@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+@SuppressWarnings("serial")
 public class TestQuestion extends JPanel {
 
 	// RANDOM NUMBERS GENERATOR CONSTANT
@@ -30,12 +31,11 @@ public class TestQuestion extends JPanel {
 
 		this.correctAnswer = answers[0];
 		this.testAnswer = false;
-		this.q_answers=answers;
+		this.q_answers = answers;
 
 		this.setRadioButtons(randomAnswersArray(answers));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		
 		answerGroup.add(q_answer1);
 		answerGroup.add(q_answer2);
 		answerGroup.add(q_answer3);
@@ -85,15 +85,13 @@ public class TestQuestion extends JPanel {
 		this.setRadioButtons(randomAnswersArray(this.q_answers));
 
 	}
-	
-	public void disableButtons()
-	{
+
+	public void disableButtons() {
 		this.q_answer1.setEnabled(false);
 		this.q_answer2.setEnabled(false);
 		this.q_answer3.setEnabled(false);
 		this.q_answer4.setEnabled(false);
-		
-		
+
 	}
 
 	private void clearRadioButtons() {
@@ -102,12 +100,12 @@ public class TestQuestion extends JPanel {
 		this.q_answer2.setBackground(null);
 		this.q_answer3.setBackground(null);
 		this.q_answer4.setBackground(null);
-		
+
 		this.q_answer1.setEnabled(true);
 		this.q_answer2.setEnabled(true);
 		this.q_answer3.setEnabled(true);
 		this.q_answer4.setEnabled(true);
-		
+
 	}
 
 	public boolean setTestAnswer() throws Exception {
@@ -138,25 +136,20 @@ public class TestQuestion extends JPanel {
 		return null;
 
 	}
-	
+
 	public void markSelectedAnswer(boolean isCorrect) {
-		
-		
-		if ( isCorrect == true)
-		{
-		if (q_answer1.isSelected())
-			q_answer1.setBackground(Color.GREEN);
-		if (q_answer2.isSelected())
-			q_answer2.setBackground(Color.GREEN);
-		if (q_answer3.isSelected())
-			q_answer3.setBackground(Color.GREEN);
-		if (q_answer4.isSelected())
-			q_answer4.setBackground(Color.GREEN);
-		
-		
-		}
-		else
-		{
+
+		if (isCorrect == true) {
+			if (q_answer1.isSelected())
+				q_answer1.setBackground(Color.GREEN);
+			if (q_answer2.isSelected())
+				q_answer2.setBackground(Color.GREEN);
+			if (q_answer3.isSelected())
+				q_answer3.setBackground(Color.GREEN);
+			if (q_answer4.isSelected())
+				q_answer4.setBackground(Color.GREEN);
+
+		} else {
 			if (q_answer1.isSelected())
 				q_answer1.setBackground(Color.RED);
 			if (q_answer2.isSelected())
@@ -165,10 +158,8 @@ public class TestQuestion extends JPanel {
 				q_answer3.setBackground(Color.RED);
 			if (q_answer4.isSelected())
 				q_answer4.setBackground(Color.RED);
-			
-			
-		}
 
+		}
 
 	}
 

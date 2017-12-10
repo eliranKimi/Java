@@ -3,10 +3,10 @@ import javax.swing.*;
 
 import java.awt.event.*;
 import java.util.LinkedList;
-
+@SuppressWarnings("serial")
 public class TestView extends JFrame {
 
-	private static final long serialVersionUID = 1L;
+	
 	// ... Components
 	
 	private JButton m_resetBtn = new JButton("Reset");
@@ -50,22 +50,6 @@ public class TestView extends JFrame {
 
 
 	}
-
-//	public void setQuestion(TestQuestion aQuestion) {
-//
-//		String[] answers = aQuestion.getQ_answers();
-//		m_Question.setText(" Q: " + aQuestion.getQ_content());
-//
-//		m_answer1.setText(answers[0]);
-//		m_answer1.setSelected(true);
-//		m_answer2.setText(answers[1]);
-//		m_answer3.setText(answers[2]);
-//		m_answer4.setText(answers[3]);
-//
-//	}
-//	
-
-
 	
 	public void addResetListener(ActionListener resetListener) {
 		m_resetBtn.addActionListener(resetListener);
@@ -85,7 +69,6 @@ public class TestView extends JFrame {
 		m_FinishBtn.setEnabled(true);
 		
 	}
-	
 	
 	public boolean setAnswers(LinkedList<TestQuestion> aList) {
 
