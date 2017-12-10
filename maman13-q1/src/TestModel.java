@@ -74,6 +74,7 @@ public class TestModel {
 
 	}
 
+
 //	public String[] getRandomAnswers(TestQuestion q) {
 //		String[] originalAnswers = q.getQ_answers();
 //		String[] randomAnswers = new String[originalAnswers.length];
@@ -89,72 +90,61 @@ public class TestModel {
 //		return randomAnswers;
 //
 //	}
-//	
-//
-//
-//	public <T> void swap(T[] arr, int i, int j) {
-//		T tmp = arr[i];
-//		arr[i] = arr[j];
-//		arr[j] = tmp;
-//	}
+	public void markAnswers()
+	{
+		for (int i = 0; i < arrayOfQuestions.size(); i++) {
+			TestQuestion aQuestion = arrayOfQuestions.get(i);
+			aQuestion.markSelectedAnswer(aQuestion.getTestAnswer());
+			
+		}
 
-//	public TestQuestion getNextQuestion() {
-//
-//		if (currentQuestion < arrayOfQuestions.size()-1)
-//		{
-//			currentQuestion++;
-//		TestQuestion aQuestion = this.getCurrentQuestion();
-//		aQuestion.setQ_answers(this.getRandomAnswers(aQuestion));
-//
-//		return aQuestion;
-//		}
-//		
-//		return null;
-//
-//	}
+		
+	}
 
-//	public void reset() {
-//		currentQuestion = 0;
-//
-//		for (int i = 0; i < arrayOfQuestions.size(); i++) {
-//			arrayOfQuestions.get(i).resetCorrectAnswer();
-//		}
-//
-//	}
+
+	public void reset() {
+		
+
+		for (int i = 0; i < arrayOfQuestions.size(); i++) {
+			arrayOfQuestions.get(i).resetCorrectAnswer();
+		}
+
+	}
 
 //	public TestQuestion getCurrentQuestion() {
 //		return arrayOfQuestions.get(currentQuestion);
 //	}
 
-//	public float finish() {
-//
-//		if (currentQuestion == arrayOfQuestions.size()-1) {
-//			int count = this.getNumberOfCurrect();
-//			int size = arrayOfQuestions.size();
-//			float total = ((float)count / (float)size) * 100;
-//			
-//			return total;
-//
-//
-//		}
-//
-//		return -1;
-//
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	private int getNumberOfCurrect() {
-//		int count = 0;
-//		for (int i = 0; i < arrayOfQuestions.size(); i++) {
-//			if (arrayOfQuestions.get(i).getCorrectAnswer() == true) {
-//				count++;
-//			}
-//
-//		}
-//
-//		return count;
-//
-//	}
+	public float finish() {
+
+			int count = this.getNumberOfCorrect();
+			int size = arrayOfQuestions.size();
+			float total = ((float)count / (float)size) * 100;
+			
+			this.disableAllRadio();
+			this.markAnswers();
+			return total;
+
+
+	}
+
+	private int getNumberOfCorrect() {
+		int count = 0;
+		for (int i = 0; i < arrayOfQuestions.size(); i++) {
+			if (arrayOfQuestions.get(i).getTestAnswer() == true) {
+				count++;
+			}
+
+		}
+
+		return count;
+
+	}
+
+	public void disableAllRadio() {
+		for (int i = 0; i < arrayOfQuestions.size(); i++) {
+			arrayOfQuestions.get(i).disableButtons();
+		}
+	}
 
 }

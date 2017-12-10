@@ -8,6 +8,7 @@ public class TestView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	// ... Components
+	
 	private JButton m_resetBtn = new JButton("Reset");
 	private JButton m_FinishBtn = new JButton("Finish");
 	private TestModel testModel;
@@ -15,8 +16,8 @@ public class TestView extends JFrame {
 	public TestView(TestModel model) {
 
 		this.testModel = model;
-
-		JScrollPane mainScroll = new JScrollPane();
+		//JScrollPane mainScroll2 = new JScrollPane();
+		JPanel mainScroll = new JPanel();
 		JPanel questionPanel = new JPanel();
 
 		LinkedList<TestQuestion> questions = testModel.getArrayOfQuestions();
@@ -28,24 +29,24 @@ public class TestView extends JFrame {
 			
 		}
 		questionPanel.setLayout(new BoxLayout(questionPanel,BoxLayout.Y_AXIS));
+		mainScroll.setLayout(new BoxLayout(mainScroll,BoxLayout.Y_AXIS));
 		questionPanel.setVisible(true);
 
 
 		JPanel btnsPanel = new JPanel();
 		btnsPanel.setLayout(new FlowLayout());
 		btnsPanel.add(m_resetBtn);
-		m_FinishBtn.setEnabled(false);
 		btnsPanel.add(m_FinishBtn);
-		
 		
 		mainScroll.add(questionPanel);
 		mainScroll.add(btnsPanel);
-		this.setContentPane(questionPanel);
+		
+		this.setContentPane(mainScroll);
 		//this.pack();
 		this.setTitle("Test");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
-		this.setSize(800,800);
+		this.setSize(400,400);
 
 
 	}
@@ -63,20 +64,7 @@ public class TestView extends JFrame {
 //
 //	}
 //	
-//	public String getSelectedAnswer()
-//	{
-//		if (m_answer1.isSelected())
-//			return m_answer1.getText();
-//		if (m_answer2.isSelected())
-//			return m_answer2.getText();
-//		if (m_answer3.isSelected())
-//			return m_answer3.getText();
-//		if (m_answer4.isSelected())
-//			return m_answer4.getText();
-//		
-//		return null;
-//		
-//	}
+
 
 	
 	public void addResetListener(ActionListener resetListener) {
@@ -97,6 +85,25 @@ public class TestView extends JFrame {
 		m_FinishBtn.setEnabled(true);
 		
 	}
+	
+	
+	public boolean setAnswers(LinkedList<TestQuestion> aList) {
+
+		try {
+
+			for (int i = 0; i < aList.size(); i++) {
+				aList.get(i).setTestAnswer();
+
+			}
+		} catch (Exception e) {
+			this.showError("Please answer all of the questions!");
+			return false;
+		}
+
+		return true;
+
+	}
+
 
 
 
