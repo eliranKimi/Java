@@ -1,25 +1,30 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.Scanner;
-public class TestModel {
 
-	// RANDOM NUMBERS GENERATOR CONSTANT
+import javax.swing.JOptionPane;
+
+public class TestModel implements ITestModel {
 
 	public static final int NUMBER_OF_ANSWERS = 4;
-	private LinkedList<TestQuestion> arrayOfQuestions;
+	public static final double PRECENT_BASE = 100.0;
 
-	public LinkedList<TestQuestion> getArrayOfQuestions() {
-		return arrayOfQuestions;
+	public final String dir = System.getProperty("user.dir");
+	private LinkedList<TestQuestion> listOfQuestions;
+
+	public LinkedList<TestQuestion> getListOfQuestions() {
+		return listOfQuestions;
 	}
 
-	public void setArrayOfQuestions(LinkedList<TestQuestion> arrayOfQuestions) {
-		this.arrayOfQuestions = arrayOfQuestions;
+	public void setListOfQuestions(LinkedList<TestQuestion> listOfQuestions) {
+		this.listOfQuestions = listOfQuestions;
 	}
 
 	public TestModel() {
 
-		arrayOfQuestions = this.readFile();
+		listOfQuestions = this.readFile();
 
 	}
 
@@ -37,7 +42,8 @@ public class TestModel {
 
 			input.close();
 		} catch (FileNotFoundException ex) {
-			System.out.println("GOddamn");
+			JOptionPane.showMessageDialog(null, "File at: " + dir + "/exam.txt not found!");
+			System.exit(0);
 
 		}
 
@@ -68,8 +74,8 @@ public class TestModel {
 	}
 
 	public void markAnswers() {
-		for (int i = 0; i < arrayOfQuestions.size(); i++) {
-			TestQuestion aQuestion = arrayOfQuestions.get(i);
+		for (int i = 0; i < listOfQuestions.size(); i++) {
+			TestQuestion aQuestion = listOfQuestions.get(i);
 			aQuestion.markSelectedAnswer(aQuestion.getTestAnswer());
 
 		}
@@ -78,17 +84,18 @@ public class TestModel {
 
 	public void reset() {
 
-		for (int i = 0; i < arrayOfQuestions.size(); i++) {
-			arrayOfQuestions.get(i).resetCorrectAnswer();
+		for (int i = 0; i < listOfQuestions.size(); i++) {
+			listOfQuestions.get(i).resetQuestion();
 		}
 
 	}
 
-	public float finish() {
+	public double finish() {
 
-		int count = this.getNumberOfCorrect();
-		int size = arrayOfQuestions.size();
-		float total = ((float) count / (float) size) * 100;
+		int count = this.getNumberOfCorrectAnswers();
+		int size = listOfQuestions.size();
+		double total = ((double) count / (double) size) * PRECENT_BASE;
+		total = Double.parseDouble(new DecimalFormat("###.##").format(total));
 
 		this.disableAllRadio();
 		this.markAnswers();
@@ -96,10 +103,10 @@ public class TestModel {
 
 	}
 
-	private int getNumberOfCorrect() {
+	public int getNumberOfCorrectAnswers() {
 		int count = 0;
-		for (int i = 0; i < arrayOfQuestions.size(); i++) {
-			if (arrayOfQuestions.get(i).getTestAnswer() == true) {
+		for (int i = 0; i < listOfQuestions.size(); i++) {
+			if (listOfQuestions.get(i).getTestAnswer() == true) {
 				count++;
 			}
 
@@ -110,9 +117,25 @@ public class TestModel {
 	}
 
 	public void disableAllRadio() {
-		for (int i = 0; i < arrayOfQuestions.size(); i++) {
-			arrayOfQuestions.get(i).disableButtons();
+		for (int i = 0; i < listOfQuestions.size(); i++) {
+			listOfQuestions.get(i).disableButtons();
 		}
 	}
 
+	public boolean setAnswers(TestView m_view) {
+
+		try {
+
+			for (int i = 0; i < listOfQuestions.size(); i++) {
+				listOfQuestions.get(i).setTestAnswer();
+
+			}
+		} catch (Exception e) {
+			m_view.showError("Please answer all of the questions!");
+			return false;
+		}
+
+		return true;
+
+	}
 }

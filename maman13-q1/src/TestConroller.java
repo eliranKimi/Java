@@ -29,7 +29,7 @@ public class TestConroller {
 	class FinishListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
-			boolean allAnswered = m_view.setAnswers(m_model.getArrayOfQuestions());
+			boolean allAnswered = m_model.setAnswers(m_view);
 
 			if (allAnswered == true) {
 				JOptionPane.showMessageDialog(null, "Your Score is :" + m_model.finish() + "%");

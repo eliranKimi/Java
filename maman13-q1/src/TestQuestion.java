@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.security.SecureRandom;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
@@ -35,6 +36,8 @@ public class TestQuestion extends JPanel {
 
 		this.setRadioButtons(randomAnswersArray(answers));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
+
 
 		answerGroup.add(q_answer1);
 		answerGroup.add(q_answer2);
@@ -64,9 +67,6 @@ public class TestQuestion extends JPanel {
 
 		for (int i = originalAnswers.length - 1; i > 0; i--) {
 			swap(randomAnswers, i, randomNumbers.nextInt(i + 1));
-
-			// randomAnswers[i] = originalAnswers[randomNumbers.nextInt(i + 1)];
-
 		}
 
 		return randomAnswers;
@@ -79,9 +79,9 @@ public class TestQuestion extends JPanel {
 		arr[j] = tmp;
 	}
 
-	public void resetCorrectAnswer() {
+	public void resetQuestion() {
 		this.testAnswer = false;
-		this.clearRadioButtons();
+		this.resetRadioButtons();
 		this.setRadioButtons(randomAnswersArray(this.q_answers));
 
 	}
@@ -94,13 +94,18 @@ public class TestQuestion extends JPanel {
 
 	}
 
-	private void clearRadioButtons() {
+	private void resetRadioButtons() {
+		
+		// Clear selected answer
 		answerGroup.clearSelection();
+		
+		// Clear radio buttons background
 		this.q_answer1.setBackground(null);
 		this.q_answer2.setBackground(null);
 		this.q_answer3.setBackground(null);
 		this.q_answer4.setBackground(null);
 
+		// Enable radio buttons 
 		this.q_answer1.setEnabled(true);
 		this.q_answer2.setEnabled(true);
 		this.q_answer3.setEnabled(true);
@@ -113,7 +118,6 @@ public class TestQuestion extends JPanel {
 		if (answer != null) {
 			if (this.correctAnswer == answer) {
 				testAnswer = true;
-
 			}
 		} else {
 			throw new Exception("Answer was not selected");
@@ -136,6 +140,8 @@ public class TestQuestion extends JPanel {
 		return null;
 
 	}
+	
+	//Mark an answer in green if the selected answer is true, otherwise mark it as red.
 
 	public void markSelectedAnswer(boolean isCorrect) {
 
