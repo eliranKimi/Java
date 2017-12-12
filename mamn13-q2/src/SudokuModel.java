@@ -6,19 +6,39 @@ public class SudokuModel implements ISudokuModel {
 
 	private Block[][] blocksMat;
 
+	public Block[][] getBlocksMat() {
+		return blocksMat;
+	}
+
+	public void setBlocksMat(Block[][] blocksMat) {
+		this.blocksMat = blocksMat;
+	}
+
 	public SudokuModel() {
 		this.blocksMat = new Block[NUMBER_OF_RAWS][NUMBER_OF_COLUMNS];
-		this.resetAllBlocks();
+		this.setAllBlocks();
+
+	}
+
+	public void isLegalNumeric(String str) throws Exception {
+
+		int temp = Integer.valueOf(str);
+		if (temp < 1 || temp > 9)
+			throw new Exception();
 
 	}
 
 	@Override
 	public void lockBoardEnteredNumbers() {
+		for (int i = 0; i < NUMBER_OF_RAWS; i++) {
+			for (int j = 0; j < NUMBER_OF_COLUMNS; j++) {
+				blocksMat[i][j].disableFilledCells();
+			}
+		}
 
 	}
 
-	@Override
-	public void resetAllBlocks() {
+	public void setAllBlocks() {
 
 		for (int i = 0; i < NUMBER_OF_RAWS; i++) {
 			for (int j = 0; j < NUMBER_OF_COLUMNS; j++) {
@@ -27,15 +47,19 @@ public class SudokuModel implements ISudokuModel {
 		}
 	}
 
-	@Override
-	public boolean checkInput(int value) {
-		
-		if ( value < 1 || value > 9 )
-		{
-			return false;
+	public void resetAllBlocks() {
+		for (int i = 0; i < NUMBER_OF_RAWS; i++) {
+			for (int j = 0; j < NUMBER_OF_COLUMNS; j++) {
+				blocksMat[i][j].clearMat();
+			}
 		}
+	}
 
-		return false;
+	@Override
+	public void checkInput(String temp2) throws Exception {
+
+		this.isLegalNumeric(temp2);
+
 	}
 
 	@Override
@@ -52,7 +76,7 @@ public class SudokuModel implements ISudokuModel {
 
 	@Override
 	public boolean columnLineOnBlocks(int raw, int column, int value) {
-		
+
 		for (int i = 0; i < NUMBER_OF_RAWS; i++) {
 			if (i != column && this.blocksMat[i][column].checkColumn(raw, column, value) == true) {
 				return true;
