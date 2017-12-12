@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 public class Block extends JPanel {
-
+// Note to self : created Cells class with i , j , and JTextField to gain access to a cell's position.
 	private final static int NUMBER_OF_RAWS = 3;
 	private final static int NUMBER_OF_COLUMNS = 3;
 	private final Dimension fieldDimension = new Dimension(40, 40);

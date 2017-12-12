@@ -9,8 +9,8 @@ import java.util.LinkedList;
 public class TestView extends JFrame implements ITestView {
 
 	// ... Components
-	//private static final int WIDTH = 400;
-	//private static final int HEIGHT = 400;
+	private static final int WIDTH = 500;
+	private static final int HEIGHT = 500;
 	private JButton m_resetBtn = new JButton("Reset");
 	private JButton m_FinishBtn = new JButton("Finish");
 	private TestModel testModel;
@@ -18,10 +18,13 @@ public class TestView extends JFrame implements ITestView {
 	public TestView(TestModel model) {
 
 		this.testModel = model;
-		// JScrollPane mainScroll2 = new JScrollPane();
-		JPanel mainScroll = new JPanel();
-		JPanel questionPanel = new JPanel();
 
+		JPanel btnsPanel = new JPanel();
+		JPanel questionPanel = new JPanel();
+		JPanel mainPanel = new JPanel();
+		mainPanel.add(questionPanel);
+		mainPanel.add(btnsPanel);
+		JScrollPane mainScroll = new JScrollPane(mainPanel);
 		LinkedList<TestQuestion> questions = testModel.getListOfQuestions();
 
 		for (int i = 0; i < questions.size(); i++) {
@@ -30,18 +33,17 @@ public class TestView extends JFrame implements ITestView {
 
 		}
 		questionPanel.setLayout(new BoxLayout(questionPanel, BoxLayout.Y_AXIS));
-		mainScroll.setLayout(new BoxLayout(mainScroll, BoxLayout.Y_AXIS));
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		questionPanel.setVisible(true);
 
-		JPanel btnsPanel = new JPanel();
 		btnsPanel.setLayout(new FlowLayout());
 		btnsPanel.add(m_resetBtn);
 		btnsPanel.add(m_FinishBtn);
+		mainScroll.setAutoscrolls(true);
 
-		mainScroll.add(questionPanel);
-		mainScroll.add(btnsPanel);
-		this.setContentPane(mainScroll);
-		this.pack();
+		add(mainScroll);
+
+		this.setSize(WIDTH, HEIGHT);
 		this.setTitle("Test");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);

@@ -51,8 +51,6 @@ public class TestModel implements ITestModel {
 			int i = 0;
 			String answers[] = new String[NUMBER_OF_ANSWERS];
 			String aQuestionContent = inputList.getFirst();
-
-			// TestQuestion aQuestion = new TestQuestion(inputList.getFirst(),null);
 			inputList.removeFirst();
 
 			while (i < NUMBER_OF_ANSWERS & !inputList.isEmpty()) {
@@ -62,8 +60,6 @@ public class TestModel implements ITestModel {
 
 			}
 			TestQuestion aQuestion = new TestQuestion(aQuestionContent, answers);
-			// aQuestion.setQ_answers(answers);
-			// aQuestion.setTheAnswer(answers[0]);
 
 			aList.add(aQuestion);
 
