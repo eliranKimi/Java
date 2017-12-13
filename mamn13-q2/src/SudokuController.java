@@ -16,7 +16,6 @@ public class SudokuController implements ISudokuController {
 		// ... Add listeners to the view.
 		m_view.addSetListener(new SetListener());
 		m_view.addClearListener(new ClearListener());
-		m_view.addCellsListener(new CellListener());
 
 	}
 
@@ -24,6 +23,7 @@ public class SudokuController implements ISudokuController {
 		public void actionPerformed(ActionEvent e) {
 
 			m_model.resetAllBlocks();
+			m_view.enableSet();
 
 		}
 	}
@@ -32,25 +32,7 @@ public class SudokuController implements ISudokuController {
 		public void actionPerformed(ActionEvent e) {
 
 			m_model.lockBoardEnteredNumbers();
-
-		}
-	}
-
-	class CellListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-
-			JTextField temp = (JTextField) m_view.getFocusOwner();
-
-			try {
-				
-				m_model.checkInput(temp.getText());
-
-		
-
-			} catch (Exception e1) {
-				m_view.cellNotLegalAction(temp);
-
-			}
+			m_view.disableSet();
 
 		}
 	}

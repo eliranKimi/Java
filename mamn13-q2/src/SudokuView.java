@@ -21,6 +21,10 @@ public class SudokuView extends JFrame implements ISudokuView {
 	private JButton m_clearBtn = new JButton("Clear");
 	private SudokuModel m_model;
 
+	private final static int NUMBER_OF_RAWS = 3;
+	private final static int NUMBER_OF_COLUMNS = 3;
+	
+	
 	public SudokuView(SudokuModel model) {
 		this.m_model = model;
 
@@ -30,12 +34,12 @@ public class SudokuView extends JFrame implements ISudokuView {
 
 		Block[][] aMat = m_model.getBlocksMat();
 
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
+		for (int i = 0; i < NUMBER_OF_RAWS; i++) {
+			for (int j = 0; j < NUMBER_OF_COLUMNS; j++) {
 				sudokuPanel.add(aMat[i][j]);
 			}
 		}
-		sudokuPanel.setLayout(new GridLayout(3, 3));
+		sudokuPanel.setLayout(new GridLayout(NUMBER_OF_RAWS, NUMBER_OF_COLUMNS));
 
 		btnPanel.add(m_clearBtn);
 		btnPanel.add(m_setBtn);
@@ -64,17 +68,6 @@ public class SudokuView extends JFrame implements ISudokuView {
 
 	}
 
-	public void addCellsListener(ActionListener cellListener) {
-
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				Block[][] aMat = m_model.getBlocksMat();
-				aMat[i][j].addActionListener(cellListener);
-			}
-		}
-
-	}
-
 	@Override
 	public void addClearListener(ActionListener clearListener) {
 
@@ -86,6 +79,18 @@ public class SudokuView extends JFrame implements ISudokuView {
 
 		temp.setText("");
 		this.showError("Enter 1-9 only! ");
+
+	}
+
+	public void disableSet() {
+
+		m_setBtn.setEnabled(false);
+
+	}
+
+	public void enableSet() {
+
+		m_setBtn.setEnabled(true);
 
 	}
 
