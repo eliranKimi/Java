@@ -14,10 +14,20 @@ public class TestQuestion extends JPanel {
 	// RANDOM NUMBERS GENERATOR CONSTANT
 	private static final SecureRandom randomNumbers = new SecureRandom();
 
+	
+	// An array of answers
 	private String[] q_answers;
+	
+	// The correct answer for the question
 	private String correctAnswer;
+	
+	
+	// Boolean variable - represents the answer from the test
 	private boolean testAnswer;
 
+	
+	
+	// Visual Components 
 	private JLabel q_label = new JLabel();
 	private JRadioButton q_answer1 = new JRadioButton();
 	private JRadioButton q_answer2 = new JRadioButton();
@@ -28,8 +38,8 @@ public class TestQuestion extends JPanel {
 	public TestQuestion(String content, String[] answers) {
 		super();
 
+		
 		this.q_label.setText(content);
-
 		this.correctAnswer = answers[0];
 		this.testAnswer = false;
 		this.q_answers = answers;
@@ -52,6 +62,8 @@ public class TestQuestion extends JPanel {
 
 	}
 
+	
+	// Set text to radio buttons lables
 	private void setRadioButtons(String[] randomAnswersArray) {
 
 		q_answer1.setText(randomAnswersArray[0]);
@@ -60,6 +72,9 @@ public class TestQuestion extends JPanel {
 		q_answer4.setText(randomAnswersArray[3]);
 
 	}
+	
+	
+	// Return a random array of answers
 
 	public String[] randomAnswersArray(String[] originalAnswers) {
 		String[] randomAnswers = new String[originalAnswers.length];
@@ -73,12 +88,16 @@ public class TestQuestion extends JPanel {
 
 	}
 
+	
+	// General swap function- used on randomAnswersArray function
 	public <T> void swap(T[] arr, int i, int j) {
 		T tmp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = tmp;
 	}
 
+	
+	// Reset all question's variables.
 	public void resetQuestion() {
 		this.testAnswer = false;
 		this.resetRadioButtons();
@@ -86,6 +105,8 @@ public class TestQuestion extends JPanel {
 
 	}
 
+	
+	// Disable all questions radio buttons
 	public void disableButtons() {
 		this.q_answer1.setEnabled(false);
 		this.q_answer2.setEnabled(false);
@@ -94,6 +115,8 @@ public class TestQuestion extends JPanel {
 
 	}
 
+	
+	// Reset radio buttons - background&enabled
 	private void resetRadioButtons() {
 		
 		// Clear selected answer
@@ -113,6 +136,8 @@ public class TestQuestion extends JPanel {
 
 	}
 
+	
+	// Set testAnswer in a question - throws an execption if no answer was selected
 	public boolean setTestAnswer() throws Exception {
 		String answer = this.getSelectedAnswer();
 		if (answer != null) {
@@ -127,6 +152,8 @@ public class TestQuestion extends JPanel {
 
 	}
 
+	
+	// Get selected answer text
 	public String getSelectedAnswer() {
 		if (q_answer1.isSelected())
 			return q_answer1.getText();
@@ -169,6 +196,8 @@ public class TestQuestion extends JPanel {
 
 	}
 
+	
+	// Return test answer
 	public boolean getTestAnswer() {
 		// TODO Auto-generated method stub
 		return testAnswer;

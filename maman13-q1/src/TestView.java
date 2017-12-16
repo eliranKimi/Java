@@ -8,9 +8,10 @@ import java.util.LinkedList;
 
 public class TestView extends JFrame implements ITestView {
 
-	// ... Components
 	private static final int WIDTH = 500;
 	private static final int HEIGHT = 500;
+
+	// ... Components
 	private JButton m_resetBtn = new JButton("Reset");
 	private JButton m_FinishBtn = new JButton("Finish");
 	private TestModel testModel;
@@ -27,11 +28,8 @@ public class TestView extends JFrame implements ITestView {
 		JScrollPane mainScroll = new JScrollPane(mainPanel);
 		LinkedList<TestQuestion> questions = testModel.getListOfQuestions();
 
-		for (int i = 0; i < questions.size(); i++) {
-			JPanel test = questions.get(i);
-			questionPanel.add(test);
+		this.addQuestionsToPanel(questions, questionPanel);
 
-		}
 		questionPanel.setLayout(new BoxLayout(questionPanel, BoxLayout.Y_AXIS));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		questionPanel.setVisible(true);
@@ -47,6 +45,15 @@ public class TestView extends JFrame implements ITestView {
 		this.setTitle("Test");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+
+	}
+
+	public void addQuestionsToPanel(LinkedList<TestQuestion> questions, JPanel questionPanel) {
+		for (int i = 0; i < questions.size(); i++) {
+			JPanel test = questions.get(i);
+			questionPanel.add(test);
+
+		}
 
 	}
 

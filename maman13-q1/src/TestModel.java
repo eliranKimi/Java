@@ -47,6 +47,7 @@ public class TestModel implements ITestModel {
 
 		}
 
+		// Create a question object from input file - assuming input is correct
 		while (!inputList.isEmpty()) {
 			int i = 0;
 			String answers[] = new String[NUMBER_OF_ANSWERS];
@@ -78,6 +79,7 @@ public class TestModel implements ITestModel {
 
 	}
 
+	// Reset all questions
 	public void reset() {
 
 		for (int i = 0; i < listOfQuestions.size(); i++) {
@@ -86,6 +88,7 @@ public class TestModel implements ITestModel {
 
 	}
 
+	// Calculate finish score
 	public double finish() {
 
 		int count = this.getNumberOfCorrectAnswers();
@@ -99,6 +102,7 @@ public class TestModel implements ITestModel {
 
 	}
 
+	// Get the number of correct answers
 	public int getNumberOfCorrectAnswers() {
 		int count = 0;
 		for (int i = 0; i < listOfQuestions.size(); i++) {
@@ -118,6 +122,7 @@ public class TestModel implements ITestModel {
 		}
 	}
 
+	// Set answers to all questions
 	public boolean setAnswers(TestView m_view) {
 
 		try {
