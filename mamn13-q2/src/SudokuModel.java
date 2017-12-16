@@ -10,10 +10,6 @@ public class SudokuModel implements ISudokuModel {
 		return blocksMat;
 	}
 
-	public void setBlocksMat(Block[][] blocksMat) {
-		this.blocksMat = blocksMat;
-	}
-
 	public SudokuModel() {
 		this.blocksMat = new Block[NUMBER_OF_RAWS][NUMBER_OF_COLUMNS];
 		this.setAllBlocks();
@@ -44,9 +40,6 @@ public class SudokuModel implements ISudokuModel {
 			}
 		}
 	}
-
-
-
 
 
 }

@@ -1,20 +1,12 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
-@SuppressWarnings("serial")
 public class SudokuView extends JFrame implements ISudokuView {
 
 	private JButton m_setBtn = new JButton("Set");
@@ -23,8 +15,7 @@ public class SudokuView extends JFrame implements ISudokuView {
 
 	private final static int NUMBER_OF_RAWS = 3;
 	private final static int NUMBER_OF_COLUMNS = 3;
-	
-	
+
 	public SudokuView(SudokuModel model) {
 		this.m_model = model;
 

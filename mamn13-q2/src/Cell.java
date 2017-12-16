@@ -8,9 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
+
+// Since i couldn't find a solution that involves listeneres to each cell - i've
+// trasnfered all of the checks logics to the specific cell object
 public class Cell extends JPanel implements ActionListener {
 
-	private final Dimension fieldDimension = new Dimension(40, 40);
+	private final Dimension fieldDimension = new Dimension(40, 40); //Cell dimension
 	private final static int NUMBER_OF_RAWS = 3;
 	private final static int NUMBER_OF_COLUMNS = 3;
 	private final static int MIN_LEGAL_NUM = 1;
@@ -18,11 +21,11 @@ public class Cell extends JPanel implements ActionListener {
 
 	private JTextField cellField;
 
-	private int raw;
-	private int column;
+	private int raw; // Raw posiion in Block
+	private int column; // Cell position in Block
 
-	private int blockRaw;
-	private int blockColumn;
+	private int blockRaw; //Raw position in bigger mat
+	private int blockColumn; // Column position in bigger mat
 
 	private Block[][] blocksMat;
 
