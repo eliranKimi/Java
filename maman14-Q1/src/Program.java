@@ -79,7 +79,9 @@ public class Program {
 		five.insert(new Person(24, 305512406, "Adi"));
 
 		System.out.println(five);
-		System.out.println("The minimum Student is :" + MinClass.minMember(five));
+
+		// Showing min Person
+		System.out.println("The minimum Person is :" + this.minMember(five));
 
 	}
 
@@ -118,6 +120,22 @@ public class Program {
 
 		return aNum;
 
+	}
+
+	public <T extends Comparable<T>> T minMember(GroupSet<T> aSet) {
+		Iterator<T> it = aSet.iterator();
+		T min = it.next();
+
+		while (it.hasNext()) {
+			T temp = it.next();
+			if (min.compareTo(temp) > 0) {
+
+				min = temp;
+
+			}
+		}
+
+		return min;
 	}
 
 }
