@@ -1,4 +1,5 @@
 import java.security.SecureRandom;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Program {
@@ -67,6 +68,19 @@ public class Program {
 		three.delete(new Integer(aNum));
 		System.out.println("Result: " + three.toString());
 
+		// Creating a group set of Person and adding 5 objects to it
+
+		GroupSet<Person> five = new GroupSet<Person>();
+
+		five.insert(new Person(26, 305512402, "Eliran"));
+		five.insert(new Person(21, 305512403, "Yonatan"));
+		five.insert(new Person(40, 305512404, "Moti"));
+		five.insert(new Person(11, 305512405, "Talia"));
+		five.insert(new Person(24, 305512406, "Adi"));
+
+		System.out.println(five);
+		System.out.println("The minimum Student is :" + MinClass.minMember(five));
+
 	}
 
 	public GroupSet<Integer> createRandomGroup() {
@@ -105,4 +119,5 @@ public class Program {
 		return aNum;
 
 	}
+
 }
