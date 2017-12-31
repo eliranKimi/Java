@@ -77,10 +77,10 @@ public class Program {
 		GroupSet<Person> group5 = new GroupSet<Person>();
 
 		group5.insert(new Person(26, 305512402, "Eliran"));
-		group5.insert(new Person(21, 305512403, "Yonatan"));
-		group5.insert(new Person(40, 305512404, "Moti"));
-		group5.insert(new Person(11, 305512405, "Talia"));
-		group5.insert(new Person(24, 305512406, "Adi"));
+		group5.insert(new Person(21, 305512403, "Yossi"));
+		group5.insert(new Person(40, 305512404, "Ido"));
+		group5.insert(new Person(11, 305512405, "Yael"));
+		group5.insert(new Person(24, 305512406, "Roni"));
 
 		System.out.println(group5);
 
