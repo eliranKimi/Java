@@ -13,75 +13,79 @@ public class Program {
 
 		// Creating 3 groups & showing the values
 
-		GroupSet<Integer> one = this.createRandomGroup();
-		GroupSet<Integer> two = this.createRandomGroup();
-		GroupSet<Integer> three = this.createRandomGroup();
-		GroupSet<Integer> four = new GroupSet<Integer>();
+		GroupSet<Integer> group1 = this.createRandomGroup();
+		GroupSet<Integer> group2 = this.createRandomGroup();
+		GroupSet<Integer> group3 = this.createRandomGroup();
 
-		System.out.println("G1: " + one.toString());
-		System.out.println("G2: " + two.toString());
-		System.out.println("G3: " + three.toString());
+		System.out.println("group1: " + group1.toString());
+		System.out.println("group2: " + group2.toString());
+		System.out.println("G3: " + group3.toString());
 
-		one.union(two);
+		group1.union(group2);
 		System.out.println();
-		System.out.println("Union of G1 and G2: " + one.toString());
+		System.out.println("Union of group1 and group2: " + group1.toString());
 
-		one.intersect(three);
+		group1.intersect(group3);
 		System.out.println();
-		System.out.println("Intersection of unified G1 and G3: " + one.toString());
+		System.out.println("Intersection of unified group1 and G3: " + group1.toString());
 
-		// Scan 2 numbers and create a fourth group
-		this.scanAndAddToGroup(four, scanner);
-		this.scanAndAddToGroup(four, scanner);
+		// Scan 2 numbers and create a group4th group
+		
+		GroupSet<Integer> group4 = new GroupSet<Integer>();
+		
+		this.scanAndAddToGroup(group4, scanner);
+		this.scanAndAddToGroup(group4, scanner);
 
-		// Showing if the fourth group is a subgroup of any of the other groups
-		if (one.isSubset(four) == true) {
-			System.out.println("G4 is a subset of G1");
+		// Showing if the group4th group is a subgroup of any of the other groups
+		
+		
+		if (group1.isSubset(group4) == true) {
+			System.out.println("G4 is a subset of group1");
 		}
 
-		if (two.isSubset(four) == true) {
-			System.out.println("G4 is a subset of G2");
+		if (group2.isSubset(group4) == true) {
+			System.out.println("G4 is a subset of group2");
 		}
 
-		if (three.isSubset(four) == true) {
+		if (group3.isSubset(group4) == true) {
 			System.out.println("G4 is a subset of G3");
 		}
 
-		// Scanning a number and checking if its a member of G1
+		// Scanning a number and checking if its a member of group1
 
 		int aNum = scanNumber(scanner);
 
-		if (one.isMember(new Integer(aNum)) == true) {
-			System.out.println("The number: " + aNum + " is a member of G1");
+		if (group1.isMember(new Integer(aNum)) == true) {
+			System.out.println("The number: " + aNum + " is a member of group1");
 		} else {
-			System.out.println("The number: " + aNum + " is not a member of G1");
+			System.out.println("The number: " + aNum + " is not a member of group1");
 		}
 
-		// Adding it to G2
+		// Adding it to group2
 
-		System.out.println("Adding " + aNum + " to G2");
-		two.insert(new Integer(aNum));
-		System.out.println("Result: " + two.toString());
+		System.out.println("Adding " + aNum + " to group2");
+		group2.insert(new Integer(aNum));
+		System.out.println("Result: " + group2.toString());
 
 		// Removing it from G3
 		System.out.println("Removing " + aNum + " from G3");
-		three.delete(new Integer(aNum));
-		System.out.println("Result: " + three.toString());
+		group3.delete(new Integer(aNum));
+		System.out.println("Result: " + group3.toString());
 
 		// Creating a group set of Person and adding 5 objects to it
 
-		GroupSet<Person> five = new GroupSet<Person>();
+		GroupSet<Person> group5 = new GroupSet<Person>();
 
-		five.insert(new Person(26, 305512402, "Eliran"));
-		five.insert(new Person(21, 305512403, "Yonatan"));
-		five.insert(new Person(40, 305512404, "Moti"));
-		five.insert(new Person(11, 305512405, "Talia"));
-		five.insert(new Person(24, 305512406, "Adi"));
+		group5.insert(new Person(26, 305512402, "Eliran"));
+		group5.insert(new Person(21, 305512403, "Yonatan"));
+		group5.insert(new Person(40, 305512404, "Moti"));
+		group5.insert(new Person(11, 305512405, "Talia"));
+		group5.insert(new Person(24, 305512406, "Adi"));
 
-		System.out.println(five);
+		System.out.println(group5);
 
 		// Showing min Person
-		System.out.println("The minimum Person is :" + this.minMember(five));
+		System.out.println("The minimum Person is :" + this.minMember(group5));
 
 	}
 
@@ -90,7 +94,7 @@ public class Program {
 
 		for (int i = 0; i < NUMBERS_IN_SET; i++) {
 			Integer aNumber = new Integer(randomNumbers.nextInt(MAX_RANGE_NUMBER));
-			// Insert into group if doesn't exists, if it does iterate one more time
+			// Insert into group if doesn't exists, if it does iterate group1 more time
 			if (aSet.isMember(aNumber) == true) {
 				i--;
 			} else {
