@@ -57,15 +57,18 @@ public class GroupSet<T> {
 		return this.genericSet.contains(aMember);
 	}
 
-	public void insert(T aMember) {
+	public boolean insert(T aMember) {
 		if (this.genericSet.contains(aMember) == false) {
 			this.genericSet.add(aMember);
+			return true;
 		}
+		return false;
+
 	}
 
 	public void delete(T aMember) {
 
-		if (this.genericSet.contains(aMember) == false) {
+		if (this.genericSet.contains(aMember) == true) {
 			this.genericSet.remove(aMember);
 		}
 
@@ -74,6 +77,23 @@ public class GroupSet<T> {
 	public Iterator<T> iterator() {
 
 		return this.genericSet.iterator();
+
+	}
+
+	@Override
+	public String toString() {
+		String str = new String();
+		Iterator<T> it = this.iterator();
+
+		while (it.hasNext()) {
+			if (str.isEmpty() == true) {
+				str = "" + it.next();
+			} else {
+				str = str + ',' + it.next();
+			}
+		}
+
+		return str;
 
 	}
 
