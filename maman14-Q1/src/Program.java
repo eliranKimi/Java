@@ -17,17 +17,17 @@ public class Program {
 		GroupSet<Integer> group2 = this.createRandomGroup();
 		GroupSet<Integer> group3 = this.createRandomGroup();
 
-		System.out.println("group1: " + group1.toString());
-		System.out.println("group2: " + group2.toString());
-		System.out.println("G3: " + group3.toString());
+		System.out.println("Group1: " + group1.toString());
+		System.out.println("Group2: " + group2.toString());
+		System.out.println("Group3: " + group3.toString());
 
 		group1.union(group2);
 		System.out.println();
-		System.out.println("Union of group1 and group2: " + group1.toString());
+		System.out.println("Union of Group1 and Group2: " + group1.toString());
 
 		group1.intersect(group3);
 		System.out.println();
-		System.out.println("Intersection of unified group1 and G3: " + group1.toString());
+		System.out.println("Intersection of unified Group1 and Group3: " + group1.toString());
 
 		// Scan 2 numbers and create a group4th group
 		
@@ -40,15 +40,15 @@ public class Program {
 		
 		
 		if (group1.isSubset(group4) == true) {
-			System.out.println("G4 is a subset of group1");
+			System.out.println("Group4 is a subset of Group1");
 		}
 
 		if (group2.isSubset(group4) == true) {
-			System.out.println("G4 is a subset of group2");
+			System.out.println("Group4 is a subset of Group2");
 		}
 
 		if (group3.isSubset(group4) == true) {
-			System.out.println("G4 is a subset of G3");
+			System.out.println("Group4 is a subset of Group3");
 		}
 
 		// Scanning a number and checking if its a member of group1
@@ -56,19 +56,19 @@ public class Program {
 		int aNum = scanNumber(scanner);
 
 		if (group1.isMember(new Integer(aNum)) == true) {
-			System.out.println("The number: " + aNum + " is a member of group1");
+			System.out.println("The number: " + aNum + " is a member of Group1");
 		} else {
-			System.out.println("The number: " + aNum + " is not a member of group1");
+			System.out.println("The number: " + aNum + " is not a member of Group1");
 		}
 
 		// Adding it to group2
 
-		System.out.println("Adding " + aNum + " to group2");
+		System.out.println("Adding " + aNum + " to Group2");
 		group2.insert(new Integer(aNum));
 		System.out.println("Result: " + group2.toString());
 
-		// Removing it from G3
-		System.out.println("Removing " + aNum + " from G3");
+		// Removing it from Group3
+		System.out.println("Removing " + aNum + " from Group3");
 		group3.delete(new Integer(aNum));
 		System.out.println("Result: " + group3.toString());
 
