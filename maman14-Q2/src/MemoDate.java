@@ -1,11 +1,16 @@
+import java.io.Serializable;
 
-public class MemoDate {
+public class MemoDate implements Serializable {
 
-	private String day;
-	private String month;
-	private String year;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int day;
+	private int month;
+	private int year;
 
-	public MemoDate(String day, String month, String year) {
+	public MemoDate(int day, int month, int year) {
 		super();
 		this.day = day;
 		this.month = month;
@@ -17,8 +22,8 @@ public class MemoDate {
 		if (obj instanceof MemoDate) {
 			MemoDate objDate = (MemoDate) obj;
 
-			if (this.day.equals(objDate.getDay()) == true && this.month.equals(objDate.getMonth()) == true
-					&& this.year.equals(objDate.getYear()) == true) {
+			if (this.day == objDate.getDay() == true && this.month == objDate.getMonth() == true
+					&& this.year == objDate.getYear() == true) {
 
 				return true;
 
@@ -28,27 +33,27 @@ public class MemoDate {
 		return false;
 	}
 
-	public String getDay() {
+	public int getDay() {
 		return day;
 	}
 
-	public void setDay(String day) {
+	public void setDay(int day) {
 		this.day = day;
 	}
 
-	public String getMonth() {
+	public int getMonth() {
 		return month;
 	}
 
-	public void setMonth(String month) {
+	public void setMonth(int month) {
 		this.month = month;
 	}
 
-	public String getYear() {
+	public int getYear() {
 		return year;
 	}
 
-	public void setYear(String year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 
