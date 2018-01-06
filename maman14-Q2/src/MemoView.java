@@ -1,80 +1,71 @@
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import java.util.Iterator;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
 
-public class MemoView extends JFrame {
+public class MemoView extends JFrame implements IMemoView {
 
-	private static final int MAX_LINES = 20;
+	private static final long serialVersionUID = 1L;
+	private static final int WIDTH = 400;
+	private static final int HEIGHT = 200;
+	private static final int STARTING_YEAR = 2018;
 
 	private MemoModel m_model;
 
-	// Combobox
+	// Components
+
+	private JLabel titleLabel = new JLabel("Memo:");
 
 	private JComboBox<String> daysCombo = new JComboBox<String>();
 	private JComboBox<String> monthsCombo = new JComboBox<String>();
 	private JComboBox<String> yearsCombo = new JComboBox<String>();
 
-	// Buttons
 	private JButton saveBtn = new JButton("Save");
 	private JButton getBtn = new JButton("Get record");
-	private JButton openFileBtn = new JButton("Open file");
 
 	private JTextArea memoText = new JTextArea();
 
 	public MemoView(MemoModel model) {
 		this.m_model = model;
 
-		ArrayList<Integer> days = new ArrayList<Integer>();
-		for (int i = 1; i <= 31; i++) {
-			days.add(i);
-		}
-
-		ArrayList<Integer> months = new ArrayList<Integer>();
-		for (int i = 1; i <= 12; i++) {
-			months.add(i);
-		}
-
-		ArrayList<Integer> years = new ArrayList<Integer>();
-		for (int i = 2018; i <= 2030; i++) {
-			years.add(i);
-		}
-
-		setCombo(this.daysCombo, days);
-		setCombo(this.monthsCombo, months);
-		setCombo(this.yearsCombo, years);
+		// Setting values to date fields
+		setCombo(this.daysCombo, m_model.getDaysArray());
+		setCombo(this.monthsCombo, m_model.getMonthsArray());
+		setCombo(this.yearsCombo, m_model.getYearsArray(STARTING_YEAR));
 
 		JPanel compPanel = new JPanel();
+
+		JPanel titlePanel = new JPanel();
+		titlePanel.add(titleLabel);
 
 		compPanel.add(daysCombo);
 		compPanel.add(monthsCombo);
 		compPanel.add(yearsCombo);
 		compPanel.add(saveBtn);
 		compPanel.add(getBtn);
-		compPanel.add(openFileBtn);
 
 		JScrollPane textScroll = new JScrollPane(memoText);
-
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
-		mainPanel.add(compPanel);
+		mainPanel.add(titlePanel);
 		mainPanel.add(textScroll);
+		mainPanel.add(compPanel);
 
 		this.add(mainPanel);
 
-		// this.setSize(WIDTH, HEIGHT);
 		this.pack();
+		this.setSize(WIDTH, HEIGHT);
 		this.setTitle("Memo Application");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -95,11 +86,6 @@ public class MemoView extends JFrame {
 
 	public void addGetMemoListener(ActionListener getMemoListener) {
 		getBtn.addActionListener(getMemoListener);
-
-	}
-
-	public void addOpenFileListener(ActionListener openFileListener) {
-		openFileBtn.addActionListener(openFileListener);
 
 	}
 
@@ -127,6 +113,12 @@ public class MemoView extends JFrame {
 
 	public void setMemoText(String memo) {
 		this.memoText.setText(memo);
+
+	}
+
+	public boolean dateIsLegal() {
+
+		return this.getSelectedDate().isLegal();
 
 	}
 

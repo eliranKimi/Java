@@ -1,14 +1,23 @@
-import java.io.File;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-public class MemoModel {
+public class MemoModel extends JFrame implements IMemoModel {
+
+	private static final long serialVersionUID = 1L;
+
+	private static final int MIN_MONTH = 1;
+	private static final int MAX_MONTH = 12;
+	private static final int MIN_DAY = 1;
+	private static final int MAX_DAY = 31;
+	private static final int YEAR_RANGE = 30;
 
 	private Hashtable<MemoDate, String> memoHash;
 
@@ -17,68 +26,50 @@ public class MemoModel {
 
 	}
 
-	public void readMemosHashFromFile(String filePath) throws ClassNotFoundException, IOException {
+	public boolean readMemosHashFromFile(String filePath) {
 
 		ObjectInputStream writeFile = null;
 
 		try {
 			writeFile = new ObjectInputStream(new FileInputStream(filePath));
+			memoHash = (Hashtable<MemoDate, String>) writeFile.readObject();
+			writeFile.close();
+
+			return true;
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, "Either file dont exists or wrong format!");
+
+		} catch (ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(this, "Class not found!");
+
 		}
-
-	//	if (writeFile != null && writeFile.readObject() instanceof Hashtable<?, ?>) {
-			memoHash = (Hashtable<MemoDate, String>) writeFile.readObject();
-	//	}
-
-		writeFile.close();
-
+		return false;
 
 	}
 
-	public void writeMemosHashToFile(String filePath) throws IOException {
+	public void writeMemosHashToFile(String filePath) {
 		ObjectOutputStream writeFile = null;
 
 		try {
 			writeFile = new ObjectOutputStream(new FileOutputStream(filePath, false));
+			writeFile.writeObject(memoHash);
+			writeFile.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, "IO Exception in writing file!");
 		}
-
-		if (writeFile != null) {
-			writeFile.writeObject(memoHash);
-		}
-
-		writeFile.close();
 
 	}
 
 	public String getMemo(MemoDate selectedDate, String fileName) {
-
-		try {
-			this.readMemosHashFromFile(fileName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.readMemosHashFromFile(fileName);
 
 		if (this.memoHash.containsKey(selectedDate) == true) {
 			return this.memoHash.get(selectedDate);
 		}
 
 		return "";
-
-	}
-
-	public void openFile() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -90,13 +81,35 @@ public class MemoModel {
 		}
 		memoHash.put(selectedDate, memoText);
 
-		try {
-			this.writeMemosHashToFile(fileName);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		this.writeMemosHashToFile(fileName);
+
+	}
+
+	public ArrayList<Integer> getDaysArray() {
+		ArrayList<Integer> daysArray = new ArrayList<Integer>();
+		for (int i = MIN_DAY; i <= MAX_DAY; i++) {
+			daysArray.add(i);
 		}
 
+		return daysArray;
+	}
+
+	public ArrayList<Integer> getMonthsArray() {
+		ArrayList<Integer> monthsArray = new ArrayList<Integer>();
+		for (int i = MIN_MONTH; i <= MAX_MONTH; i++) {
+			monthsArray.add(i);
+		}
+
+		return monthsArray;
+	}
+
+	public ArrayList<Integer> getYearsArray(int startingYear) {
+		ArrayList<Integer> yearsArray = new ArrayList<Integer>();
+		for (int i = startingYear; i <= startingYear + YEAR_RANGE; i++) {
+			yearsArray.add(i);
+		}
+
+		return yearsArray;
 	}
 
 }

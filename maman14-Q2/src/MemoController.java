@@ -1,7 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MemoController {
+public class MemoController implements IMemoController {
 
 	private MemoModel m_model;
 	private MemoView m_view;
@@ -15,14 +15,19 @@ public class MemoController {
 
 		m_view.addSaveListener(new SaveMemoListener());
 		m_view.addGetMemoListener(new GetMemoListener());
-		m_view.addOpenFileListener(new OpenFileListener());
 
 	}
 
 	class SaveMemoListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
-			m_model.saveMemo(m_view.getSelectedDate(), m_view.getMemoText(), m_view.getFileName());
+			if (m_view.dateIsLegal() == true) {
+
+				m_model.saveMemo(m_view.getSelectedDate(), m_view.getMemoText(), m_view.getFileName());
+
+			} else {
+				m_view.showError("Not a legal date!");
+			}
 
 		}
 	}
@@ -30,15 +35,13 @@ public class MemoController {
 	class GetMemoListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
-			m_view.setMemoText(m_model.getMemo(m_view.getSelectedDate(), m_view.getFileName()));
+			if (m_view.dateIsLegal() == true) {
 
-		}
-	}
+				m_view.setMemoText(m_model.getMemo(m_view.getSelectedDate(), m_view.getFileName()));
+			} else {
+				m_view.showError("Not a legal date!");
 
-	class OpenFileListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-
-			m_model.openFile();
+			}
 
 		}
 	}
